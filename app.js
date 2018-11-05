@@ -20,7 +20,7 @@ var Vehicle=mongoose.model("Vehicle", vehicleSchema);
 
 //index routes
 app.get('/', function(req,res){
-    res.redirect("/vehicles");
+    res.render("index");
 });
 
 //vehicle route
@@ -34,10 +34,24 @@ app.get("/vehicles", function(req,res){
     })
 });
 
-// app.get("/vehicles/new", function(req, res){
-//     res.render("new");
-// });
+app.get("/vehicles/new", function(req, res){
+    res.render("new");
+});
 
+app.post("/vehicles", function(req, res){
+    console.log(req.body.vehicle);
+    Vehicle.create(req.body.vehicle, function(err, newEntry){
+        if(err){
+            res.render("/new");
+        } else {
+            res.redirect("/vehicles");
+        }
+    })
+});
+
+app.get("/vehicles/:id", function(req, res){
+    res.send("Hello world");
+})
 
 
 app.listen(3000, (res, error) =>{
