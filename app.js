@@ -50,8 +50,24 @@ app.post("/vehicles", function(req, res){
 });
 
 app.get("/vehicles/:id", function(req, res){
-    res.send("Hello world");
-})
+    Vehicle.findById(req.params.id, function(err,foundVehicle){
+        if(err){
+            res.redirect("/vehicles");
+        } else {
+            res.render("showvehicle", {foundVehicle: foundVehicle});
+        }
+    })
+});
+
+app.get("/vehicles/:id/register", function(req,res){
+    Vehicle.findById(req.params.id, function(err, foundEntry){
+        if(err){
+            res.redirect("vehicles");
+        } else {
+            res.render("registerPolicy", {foundEntry: foundEntry});
+        }
+    })
+});
 
 
 app.listen(3000, (res, error) =>{
