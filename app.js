@@ -1,22 +1,16 @@
-const express=require('express');
-const app=express();
-const bodyParser=require("body-parser");
-const mongoose=require("mongoose");
+var express=require('express');
+var app=express();
+var bodyParser=require("body-parser");
+var mongoose=require("mongoose");
+var Vehicle = require("./models/vehicle");
+var seedDB = require("./seed");
 
 mongoose.connect('mongodb://localhost:27017/insurance_system');
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
-var vehicleSchema=new mongoose.Schema({
-    name: String,
-    type: String,
-    description: String,
-    duration: Number,
-    created: {type: Date, default: Date.now}
-});
-
-var Vehicle=mongoose.model("Vehicle", vehicleSchema);
+seedDB();
 
 //index routes
 app.get('/', function(req,res){
