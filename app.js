@@ -7,9 +7,11 @@ var LocalStrategy=require("passport-local");
 var Vehicle = require("./models/vehicle");
 var seedDB = require("./seed");
 var User=require("./models/user");
+var Life=require("./models/life");
 
 var vehicleRoute=require("./routes/vehicles"),
-    authRoute=require("./routes/index");
+    authRoute=require("./routes/index"),
+    lifeRoute=require("./routes/life");
 
 mongoose.connect('mongodb://localhost:27017/insurance_system');
 app.use(bodyParser.urlencoded({extended: true}));
@@ -29,9 +31,38 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-seedDB();
+//seedDB();
 app.use("/vehicles", vehicleRoute);
+app.use("/life", lifeRoute);
 app.use(authRoute);
+
+app.get("/policy/new", function(req, res){
+    res.render("new");
+});
+
+app.post("/policy", function(req, res){
+
+    if(req.body.vehicle.type==="life"){
+        Life.create(req.body.vehicle, function(err, newEntry){
+            if(err){
+                res.render("/new");
+            } else {
+                res.redirect("/vehicles");
+            }
+        });
+    } else {
+        Vehicle.create(req.body.vehicle, function(err, newEntry){
+            if(err){
+                res.render("/new");
+            } else {
+                res.redirect("/vehicles");
+            }
+        });
+    }
+    
+  //  console.log(req.body.vehicle.type);
+    
+});
 
 
 

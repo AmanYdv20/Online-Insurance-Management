@@ -1,34 +1,35 @@
 var express=require("express");
 var router=express.Router();
 
-var Vehicle=require("../models/vehicle");
+var Life=require("../models/life");
 
 //vehicle route
 router.get("/", function(req,res){
-    Vehicle.find({},function(err, vehicles){
+    Life.find({},function(err, lifes){
         if(err){
             console.log("ERROR");
         } else {
-            res.render("vehilces", {vehicles: vehicles});
+            res.render("life", {lifes: lifes});
         }
     })
 });
 
 router.get("/:id", function(req, res){
-    Vehicle.findById(req.params.id, function(err,foundVehicle){
+    Life.findById(req.params.id, function(err,foundlife){
         if(err){
-            res.redirect("/vehicles");
+            res.redirect("/life");
         } else {
-            res.render("showvehicle", {foundVehicle: foundVehicle});
+            res.render("showlife", {foundlife: foundlife});
         }
     })
 });
 
 router.get("/:id/register", function(req,res){
-    Vehicle.findById(req.params.id, function(err, foundEntry){
+    Life.findById(req.params.id, function(err, foundEntry){
         if(err){
             res.redirect("vehicles");
         } else {
+            console.log(req.params);
             res.render("registerPolicy", {foundEntry: foundEntry});
         }
     })
