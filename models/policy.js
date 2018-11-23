@@ -3,8 +3,11 @@ var mongoose = require("mongoose");
 var policySchema=new mongoose.Schema({
     name: String,
     type: String,
-    description: String,
     duration: Number,
+    number: Number,
+    installment: Number,
+    newMoney: Number,
+    description: String,
     customers: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"

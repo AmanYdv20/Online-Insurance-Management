@@ -71,4 +71,8 @@ router.post("/:id", function(req,res){
     })
 });
 
+// router.get("/:id/edit", function(req, res){
+//     res.render("editPolicy");
+// })
+
 module.exports=router;

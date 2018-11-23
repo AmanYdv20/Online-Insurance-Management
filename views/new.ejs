@@ -5,30 +5,40 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Policy Name</label>
-                            <input type="text" class="form-control" name="policy[name]" placeholder="Ex. Policy Name">
+                            <input type="text" class="form-control" name="policy[name]" placeholder="Ex.Policy Name">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPassword4"> Policy Type</label>
-                            <input type="text" class="form-control" name="policy[type]" placeholder="Ex. 2 wheeler">
+                            <input type="text" class="form-control" name="policy[type]" placeholder="Vehicle, life, health">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                           <label for="inputAddress2">Net Time(in years)</label>
+                           <input type="number" class="form-control" name="policy[duration]">
+                        </div>
+                        <div class="form-group col-md-4">
+                           <label for="inputZip">Policy Number</label>
+                           <input type="text" class="form-control" name="policy[number]">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputZip">Monthly Installment</label>
+                            <input type="number" class="form-control" placeholder="Ex-7500" name="policy[installment]">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                           <label for="netMoney">Net Money to be Paid</label>
+                           <input type="number" class="form-control" placeholder="in lakhs" name="policy[netMoney]">
+                        </div>
+                        <div class="form-group col-md-6">
+                           <label for="inputZip">Money Customer get</label>
+                           <input type="numv=ber" class="form-control" placeholder="in Lakhs" name="policy[profit]">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputAddress">Description</label>
                         <input type="text" class="form-control" name="policy[description]" placeholder="Ex. Description">
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label for="inputAddress2">Net Time(in years)</label>
-                        <input type="number" class="form-control" name="policy[duration]" placeholder="Ex. 5">
-                    </div>
-                    <!-- <div class="form-row">
-                        <div class="form-group col-md-6">
-                        <label for="inputCity">City</label>
-                        <input type="text" class="form-control" id="inputCity">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputZip">Zip</label>
-                        <input type="text" class="form-control" id="inputZip">
-                    </div>
                     </div>
                     <div class="form-group">
                         <div class="form-check">
@@ -37,7 +47,7 @@
                               Check me out
                         </label>
                         </div>
-                    </div> -->
+                    </div>
                     <button type="submit" class="btn btn-primary">Post Policy</button>
             </form>
     </div>
