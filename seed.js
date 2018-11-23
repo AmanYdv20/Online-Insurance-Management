@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-var Vehicle = require("./models/vehicle");
 
 var data = [
     {

@@ -1,11 +1,11 @@
 var express=require("express");
 var router=express.Router();
 
-var Vehicle=require("../models/vehicle");
+var Policy=require("../models/policy");
 
 //vehicle route
 router.get("/", function(req,res){
-    Vehicle.find({},function(err, vehicles){
+    Policy.find({type: "vehicle"},function(err, vehicles){
         if(err){
             console.log("ERROR");
         } else {
@@ -15,7 +15,7 @@ router.get("/", function(req,res){
 });
 
 router.get("/:id", function(req, res){
-    Vehicle.findById(req.params.id, function(err,foundVehicle){
+    Policy.findById(req.params.id, function(err,foundVehicle){
         if(err){
             res.redirect("/vehicles");
         } else {
@@ -25,7 +25,7 @@ router.get("/:id", function(req, res){
 });
 
 router.get("/:id/register", function(req,res){
-    Vehicle.findById(req.params.id, function(err, foundEntry){
+    Policy.findById(req.params.id, function(err, foundEntry){
         if(err){
             res.redirect("vehicles");
         } else {

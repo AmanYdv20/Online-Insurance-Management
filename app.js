@@ -4,19 +4,21 @@ var bodyParser=require("body-parser");
 var mongoose=require("mongoose");
 var passport=require("passport");
 var LocalStrategy=require("passport-local");
-var Vehicle = require("./models/vehicle");
 var seedDB = require("./seed");
 var User=require("./models/user");
-var Life=require("./models/life");
+var methodOverride=require("method-override");
+var Policy=require("./models/policy");
 
 var vehicleRoute=require("./routes/vehicles"),
     authRoute=require("./routes/index"),
-    lifeRoute=require("./routes/life");
+    lifeRoute=require("./routes/life"),
+    policyRoute=require("./routes/policies");
 
 mongoose.connect('mongodb://localhost:27017/insurance_system');
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use(methodOverride("_method"));
 
 //Configuring passport
 app.use(require('express-session')({
@@ -34,35 +36,10 @@ passport.deserializeUser(User.deserializeUser());
 //seedDB();
 app.use("/vehicles", vehicleRoute);
 app.use("/life", lifeRoute);
+app.use("/policy", policyRoute);
 app.use(authRoute);
 
-app.get("/policy/new", function(req, res){
-    res.render("new");
-});
-
-app.post("/policy", function(req, res){
-
-    if(req.body.vehicle.type==="life"){
-        Life.create(req.body.vehicle, function(err, newEntry){
-            if(err){
-                res.render("/new");
-            } else {
-                res.redirect("/vehicles");
-            }
-        });
-    } else {
-        Vehicle.create(req.body.vehicle, function(err, newEntry){
-            if(err){
-                res.render("/new");
-            } else {
-                res.redirect("/vehicles");
-            }
-        });
-    }
-    
-  //  console.log(req.body.vehicle.type);
-    
-});
+//post  route to handle the new policy
 
 
 
