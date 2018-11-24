@@ -15,15 +15,17 @@ router.get("/register", function(req,res){
     res.render("register");
 });
 
+//yaha pe kuch galti thi register and authentication k time pe
 router.post("/register", function(req,res){
-    var newUser=new User({username: req.body.username});
+    var newUser=new User(req.body.user);
+    //eval(require("locus"));
    User.register(newUser, req.body.password, function(err,user){
        if(err){
            console.log(err);
-           return res.render("register");
+           res.redirect("/policy");
        }
        passport.authenticate("local")(req,res,function(){
-           res.redirect("/");
+           res.redirect("/policy");
        });
    });
     
@@ -37,7 +39,7 @@ router.get('/login', (req, res)=> {
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
-  }), (req, res)=> {
+  }), function(req, res){
   
 });
 

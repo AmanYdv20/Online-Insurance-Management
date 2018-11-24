@@ -16,6 +16,7 @@ router.get("/", function(req,res){
 });
 
 router.get("/new", function(req,res){
+    console.log(req.user);
     res.render("new");
 });
 
@@ -44,6 +45,7 @@ router.get("/:id/register", function(req,res){
         if(err){
             res.redirect("vehicles");
         } else {
+            console.log(req.user);
             res.render("registerPolicy", {foundEntry: foundEntry});
         }
     })
@@ -71,8 +73,35 @@ router.post("/:id", function(req,res){
     })
 });
 
-// router.get("/:id/edit", function(req, res){
-//     res.render("editPolicy");
-// })
+router.get("/:id/edit", function(req, res){
+    Policy.findById(req.params.id, function(err, foundPolicy){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("editPolicy", {foundPolicy: foundPolicy});
+        }
+    })
+});
+
+router.put("/:id", function(req, res){
+    Policy.findByIdAndUpdate(req.params.id, req.body.policy, function(err, updatedPolicy){
+        if(err){
+            res.redirect("policy");
+        } else {
+            res.redirect("/policy/"+ req.params.id);
+        }
+    });
+
+});
+
+router.delete("/:id", function(req,res){
+    Policy.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            res.redirect("/policy");
+        } else{
+            res.redirect("/policy");
+        }
+    })
+});
 
 module.exports=router;

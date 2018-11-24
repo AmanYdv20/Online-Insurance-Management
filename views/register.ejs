@@ -1,5 +1,96 @@
-<form action="/register" method="POST">
+<!-- <form action="/register" method="POST">
     <input type="text" placeholder="Username", name="username">
     <input type="password" placeholder="Password" name="password">
     <button>Submit</button>
-</form>
+</form> -->
+<% include partials/header %>
+<div class="container">
+    <div class="jumbotron">
+            <form action="/register" method="POST">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputPassword4">Type Username</label>
+                            <input type="text" class="form-control" name="user[username]" placeholder="Vehicle, life, health">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputEmail4">First Name</label>
+                            <input type="text" class="form-control" name="user[firstname]" placeholder="Ex.Policy Name">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputPassword4">Last Name</label>
+                            <input type="text" class="form-control" name="user[lastname]" placeholder="Vehicle, life, health">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                           <label for="netMoney">Email Address</label>
+                           <input type="email" class="form-control" name="user[emailAddress]">
+                        </div>
+                        <div class="form-group col-md-6">
+                           <label for="address">Confirm Email Address</label>
+                           <input type="email" class="form-control" name="confirmEmail">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                           <label for="netMoney">Password</label>
+                           <input type="password" class="form-control" name="password">
+                        </div>
+                        <div class="form-group col-md-6">
+                           <label for="address">Confirm Password</label>
+                           <input type="password" class="form-control" name="confirmPassword">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="sel1">Gender</label>
+                            <select class="form-control" id="sel1" name="user[gender]">
+                              <option>Male</option>
+                              <option>Female</option>
+                              <option>Others</option>
+                            </select>
+                          </div> 
+                        <div class="form-group col-md-9">
+                            <label for="inputAddress2">Address</label>
+                            <input type="text" class="form-control" name="user[address]">
+                         </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                           <label for="netMoney">City</label>
+                           <input type="text" class="form-control" name="user[city]">
+                        </div>
+                        <div class="form-group col-md-4">
+                           <label for="inputZip">District</label>
+                           <input type="text" class="form-control" name="user[district]">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputZip">Pin-Code</label>
+                            <input type="number" class="form-control" name="user[pinCode]">
+                         </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                           <label for="netMoney">Phone Number</label>
+                           <input type="number" class="form-control" name="user[mobileNo]">
+                        </div>
+                        <div class="form-group col-md-6">
+                           <label for="address">Alternate Phone Number</label>
+                           <input type="number" class="form-control" name="user[alternateMobileNo]">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" id="gridCheck">
+                            <label class="form-check-label" for="gridCheck">
+                              I confirm that I have read the terms and conditions of company
+                        </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Post Policy</button>
+            </form>
+    </div>
+
+</div>
+
+<%include partials/footer %>

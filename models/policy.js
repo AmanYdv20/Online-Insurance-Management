@@ -6,7 +6,8 @@ var policySchema=new mongoose.Schema({
     duration: Number,
     number: Number,
     installment: Number,
-    newMoney: Number,
+    netMoney: Number,
+    profit: Number,
     description: String,
     customers: [{
             type: mongoose.Schema.Types.ObjectId,
